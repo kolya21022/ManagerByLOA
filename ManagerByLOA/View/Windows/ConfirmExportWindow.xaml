@@ -1,0 +1,59 @@
+﻿<!-- Окно с запросом подтверждения экспорта доверенностей текущего года в архив -->
+<Window x:Class="ManagerByLetterOfAttorney.View.Windows.ConfirmExportWindow" 
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+		WindowStartupLocation="CenterOwner" 
+		Height="420" Width="640" 
+		mc:Ignorable="d" 
+		Title="Подтверждение экспорта доверенностей" >
+
+	<ScrollViewer VerticalScrollBarVisibility="Auto">
+		<Grid Margin="5">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<TextBlock Grid.Row="1" TextWrapping="WrapWithOverflow">
+				<Run Text="Старый год выдачи, указанный текущим в базе данных: [" />
+				<Run FontWeight="Bold" Name="PreviousYear1Run" />
+				<Run Text="]" />
+				<LineBreak />
+				<Run Text="Новый год выдачи, указанный текущим на этом компьютере: [" />
+				<Run FontWeight="Bold" Name="NextYear1Run" />
+				<Run Text="]" />
+				<LineBreak />
+				<Run Text="В случае, если это не ошибочно выставленная дата и время на вашем компьютере, " />
+				<Run Text="и вы действительно хотите перенести все активные доверенности [" />
+				<Run FontWeight="Bold" Name="PreviousYear2Run" />
+				<Run Text="] года в архив и сделать текущим [" />
+				<Run FontWeight="Bold" Name="NextYear2Run" />
+				<Run Text="] год, начав нумерацию порядкового номера доверенностей с единицы, введите " />
+				<Run Text="подтверждение в текстовое поле снизу для разблокировки кнопки экспорта." />
+				<LineBreak />
+				<Run Name="OperationIsIrrevocableWarningRun" Text="Внимание: Данная операция неотменяема." />
+				<LineBreak />
+				<Run Text="Если это ошибка, и вы не хотите производить экспорт данных, " />
+				<Run Text="закройте это окно и приложение завершится." />
+				<LineBreak />
+				<Run Text="Для разблокировки кнопки экспорта, введите [" />
+				<Run FontWeight="Bold" Name="ConfirmRun" />
+				<Run Text="] в текстовое поле ниже и нажмите эту кнопку для экспорта."></Run>
+			</TextBlock>
+			
+			<!-- Поле ввода подтверждения -->
+			<TextBox Grid.Row="2" Margin="0 5 0 0" Padding="2.5" TextChanged="ConfirmTextBox_OnTextChanged" 
+					 Name="ConfirmTextBox" />
+			<StackPanel Grid.Row="3" Margin="0 5 0 0">
+				<Button Cursor="Hand" Click="ExportButton_OnClick" Padding="2.5" IsEnabled="False" 
+						Name="ExportButton" Content="Выполнить экспорт" />
+				<Button Cursor="Hand" Margin="0 5 0 0" Padding="2.5" 
+						Click="CloseApplicationButton_OnClick" Content="Закрыть приложение" />
+			</StackPanel>
+		</Grid>
+	</ScrollViewer>
+</Window>
